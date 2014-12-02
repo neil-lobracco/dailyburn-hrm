@@ -1,7 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+ActiveRecord::Base.connection.execute("COPY users FROM '/tmp/users.csv' DELIMITER ',' CSV HEADER;")
+ActiveRecord::Base.connection.execute("COPY sessions(id,user_id,created_at,duration) from '/tmp/sessions.csv' DELIMITER ',' CSV HEADER;")
+#ActiveRecord::Base.connection.execute("COPY readings(session_id,bpm,\"start\",\"end\",duration) FROM '/tmp/readings.csv' DELIMITER ',' CSV HEADER;")
