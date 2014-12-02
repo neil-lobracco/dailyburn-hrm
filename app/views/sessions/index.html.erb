@@ -1,0 +1,63 @@
+<div class='container well row stats'>
+    <p class='lead'>Overall Statistics</p>
+    <div class='col-sm-6'>
+        <p>Minimum BPM: <%= @stats[:bpm_min] %> </p>
+        <p>Maximum BPM: <%= @stats[:bpm_max] %> </p>
+        <p>Mean BPM: <%= @stats[:bpm_mean] %> </p>
+    </div>
+    <div class='col-sm-6'>
+        <p>% in zone 1: <%= @stats[:zone1_pct] %> </p>
+        <p>% in zone 2: <%= @stats[:zone2_pct] %> </p>
+        <p>% in zone 3: <%= @stats[:zone3_pct] %> </p>
+        <p>% in zone 4: <%= @stats[:zone4_pct] %> </p>
+    </div>
+</div>
+<table class='table'>
+    <thead>
+        <tr>
+            <th>
+                session id
+            </th>
+            <th>
+                username
+            </th>
+            <th>
+                time
+            </th>
+            <th>
+                min. bpm
+            </th>
+            <th>
+                max. bpm
+            </th>
+            <th>
+                mean bpm
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+<% @sessions.each do |session| %>
+    <tr>
+        <td>
+            <%= link_to session.id, "/sessions/#{session.id}" %>
+        </td>
+        <td>
+            <%= session.user.username %>
+        </td>
+        <td>
+            <%= session.created_at.strftime('%H:%M:%S') %>
+        </td>
+        <td>
+            <%= session.bpm_min %>
+        </td>
+        <td>
+            <%= session.bpm_max %>
+        </td>
+        <td>
+            <%= session.bpm_mean %>
+        </td>
+    </tr>
+<% end %>
+    </tbody>
+</table>
+<%= will_paginate @sessions %>
