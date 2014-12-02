@@ -18,5 +18,9 @@ class SessionsController < ApplicationController
     end
     def show
         @session = Session.find(params[:id])
+        @chart_data = {}
+        @session.readings.each do |reading|
+            @chart_data[reading.start] = reading.bpm
+        end
     end
 end

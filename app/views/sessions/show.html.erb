@@ -1,3 +1,18 @@
 <h3>
     Session Details: Session #<%= @session.id %>
 </h3>
+<p> Username: <%= @session.user.username %> </p>
+<p> User gender: <%= @session.user.gender %> </p>
+<p> User age: <%= @session.user.age %> </p>
+<div class='container well'>
+    <p class='lead'>Session Statistics</p>
+    <p>Min. BPM: <%= @session.bpm_min %> </p>
+    <p>Max. BPM: <%= @session.bpm_max %> </p>
+    <p>Mean BPM: <%= @session.bpm_mean %> </p>
+    <p>Total Duration: <%= @session.duration %>s</p>
+    <p>Time in Zone 1: <%= @session.zone1_time %>s</p>
+    <p>Time in Zone 2: <%= @session.zone2_time %>s</p>
+    <p>Time in Zone 3: <%= @session.zone3_time %>s</p>
+    <p>Time in Zone 4: <%= @session.zone4_time %>s</p>
+</div>
+<%= line_chart @chart_data %>
